@@ -42,6 +42,8 @@ makefile:
     # The makefile doesn't create the `objs` tree it expects to use.
     - mkdir -p objs/release/lib
     - mkdir -p objs/release/bin
+    - mkdir -p objs/debug/lib
+    - mkdir -p objs/debug/bin
     - chown -R flac objs
     - su -c 'make -f Makefile.lite' flac
     - su -c 'make -f Makefile.lite test' flac
