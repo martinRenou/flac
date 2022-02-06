@@ -135,12 +135,18 @@ if(INSTALL_CMAKE_CONFIG_MODULE)
         EXPORT targets
         DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake"
         NAMESPACE FLAC::)
+    export(EXPORT targets NAMESPACE FLAC:: FILE FLACTargets.cmake)
 
     configure_package_config_file(
-        flac-config.cmake.in flac-config.cmake
+        ${PROJECT_SOURCE_DIR}/flac-config.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/flac-config.cmake
         INSTALL_DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake")
     write_basic_package_version_file(
-        flac-config-version.cmake COMPATIBILITY AnyNewerVersion)
+        ${CMAKE_CURRENT_BINARY_DIR}/flac-config-version.cmake COMPATIBILITY AnyNewerVersion)
+
+    install(
+        FILES ${CMAKE_CURRENT_BINARY_DIR}/flac-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/flac-config-version.cmake
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake"
+    )
 
     install(
         FILES
